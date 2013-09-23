@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
  * @author cristian.oliveira
  */
 public class LayoutTableModel extends AbstractTableModel{
-    private String[] colunas = {"Descrição","Pos. Ini","Pos Fim","Tamanho","Valor"};
+    private String[] colunas = {"Descrição","Pos. Ini","Pos Fim","Valor","Tamanho"};
     private ArrayList<Layout> dados;
     
     @Override
@@ -39,8 +39,8 @@ public class LayoutTableModel extends AbstractTableModel{
             case 0: return dado.descricao;
             case 1: return dado.posicaoInicial;
             case 2: return dado.posicaoFinal;
-            case 3: return dado.tamanho;
-            case 4: return dado.getValor();
+            case 3: return dado.getValor();
+            case 4: return dado.tamanho;
                 default: return null;
         }
     }
