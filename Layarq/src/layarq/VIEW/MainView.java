@@ -1,5 +1,5 @@
 package layarq.VIEW;
-import HELPER.MessageHelper;
+import layarq.HELPERS.MessageHelper;
 import javax.swing.JFrame;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ListSelectionEvent;
@@ -35,6 +35,7 @@ public class MainView extends View {
                       & valor.posicaoInicial+valor.posicaoFinal>0)
                     {   
                         txtLinhaSelecionada.requestFocus();
+                        txtLinhaSelecionada.setCaretPosition(0);
                         txtLinhaSelecionada.setCaretPosition(valor.posicaoInicial-1);
                         txtLinhaSelecionada.setSelectionStart(valor.posicaoInicial-1);
                         txtLinhaSelecionada.setSelectionEnd(valor.posicaoFinal);

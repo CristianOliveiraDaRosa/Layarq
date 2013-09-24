@@ -4,12 +4,6 @@
  */
 package layarq.Objetos;
 
-import HELPER.MessageHelper;
-import com.sun.xml.internal.ws.api.message.Message;
-import java.io.File;
-import java.io.FileReader;
-import java.io.LineNumberReader;
-
 /**
  *
  * @author cristian.oliveira

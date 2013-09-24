@@ -4,7 +4,7 @@
  */
 package layarq.VIEW;
 
-import HELPER.ViewHelper;
+import layarq.HELPERS.ViewHelper;
 
 /**
  *
