@@ -43,4 +43,20 @@ public class Layout {
            }
            return lin;
        }
+       
+       public String getTipo()
+       {   
+           String valor = getValor();
+           if(!valor.isEmpty())
+            try 
+            { 
+               Long.parseLong(valor); 
+               return "Número";
+            } 
+            catch(NumberFormatException e) 
+            { 
+                return "Alpha"; 
+            }
+           return "";
+       }
 }

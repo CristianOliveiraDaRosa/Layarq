@@ -12,12 +12,12 @@ import javax.swing.table.AbstractTableModel;
  * @author cristian.oliveira
  */
 public class LayoutTableModel extends AbstractTableModel{
-    private String[] colunas = {"Descrição","Pos. Ini","Pos Fim","Tamanho","Valor"};
-    private ArrayList<Layout> dados;
+    private String[] colunas = {"Descrição","Pos. Ini","Pos Fim","Tamanho","Valor","Tipo"};
+    private ArrayList<Layout> dados  = new ArrayList<Layout>();
     
     @Override
     public int getRowCount() {
-        return dados.size();
+        return hasDados()? dados.size() : 0;
     }
 
     @Override
@@ -41,7 +41,17 @@ public class LayoutTableModel extends AbstractTableModel{
             case 2: return dado.posicaoFinal;
             case 3: return dado.tamanho;
             case 4: return dado.getValor();
+            case 5: return dado.getTipo();
                 default: return null;
+        }
+    }
+    
+    public Layout getLinha(int pLinha)
+    {
+        try {
+            return hasDados()? dados.get(pLinha) : null;
+        } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+            return null;
         }
     }
     
@@ -54,5 +64,10 @@ public class LayoutTableModel extends AbstractTableModel{
     public void setLayouts(ArrayList<Layout> pLayouts)
     {
         dados = pLayouts;
+    }
+    
+    public boolean hasDados()
+    {
+        return dados!=null;
     }
 }

@@ -25,9 +25,11 @@ public class FileModel extends Model{
     File arquivoValidar;
     Layout layout = new Layout();
     
-    public ArrayList<String> selecionaArquivo()
+    public ArrayList<String> selecionaArquivo(String pStartPath)
     {
        final JFileChooser fc = new JFileChooser();
+       if(pStartPath!=null)
+         fc.setSelectedFile(new File(pStartPath));
        int returnVal = fc.showOpenDialog(null);
        if(returnVal==0)
            arquivoValidar = fc.getSelectedFile();
@@ -37,6 +39,7 @@ public class FileModel extends Model{
     public ArrayList<String> getLinhasArquivo(File pFile)
     {
         ArrayList<String> linhas = new ArrayList<String>();
+        if(pFile!=null)
         try {
             BufferedReader br;
             br = new BufferedReader(new FileReader(arquivoValidar));
@@ -50,12 +53,14 @@ public class FileModel extends Model{
         return linhas;
     }
     
-    public ArrayList<Layout> selecionaLayout()
+    public ArrayList<Layout> selecionaLayout(String pStartPath)
     {
         ArrayList<Layout> list = null;
         
        final JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showOpenDialog(null);
+       if(pStartPath!=null)
+           fc.setSelectedFile(new File(pStartPath));
+       int returnVal = fc.showOpenDialog(null);
         
         if (returnVal==0)
         {
@@ -75,7 +80,11 @@ public class FileModel extends Model{
             String linha;
             while ((linha = br.readLine())!= null) {                
                 if(!linha.isEmpty())
-                   list.add(getLayoutFromLinha(linha));
+                {
+                   Layout l = getLayoutFromLinha(linha);
+                   if(l!=null)
+                    list.add(l);
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Arquivo inválido");
@@ -96,7 +105,7 @@ public class FileModel extends Model{
             layout.posicaoFinal   = Integer.parseInt(dados[2]);
             
         } catch (Exception e) {
-            MessageHelper.Show("Layout é inválido. Utilize o formato: 'DESCRICAO';'POSICAO INI'; 'POSICAO FIM'");
+            return null;
         }
         
         return layout;

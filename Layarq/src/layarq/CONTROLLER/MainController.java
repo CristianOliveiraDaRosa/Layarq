@@ -20,15 +20,15 @@ public class MainController extends Controller {
      ArrayList<String> linhas  = new ArrayList<String>();
      int linhaSelecionada = 0;
      
-     public String selecionaArquivo()
+     public String selecionaArquivo(String pStartPath)
      {
-         linhas = model.selecionaArquivo();
+         linhas = model.selecionaArquivo(pStartPath);
          return model.getPathArquivoValidar();
      }
      
-     public String selecionaLayout()
+     public String selecionaLayout(String pStartPath)
      {
-         layouts = model.selecionaLayout();
+         layouts = model.selecionaLayout(pStartPath);
          return model.getPathArquivoLayout();
      }
      
@@ -50,11 +50,21 @@ public class MainController extends Controller {
      
      public int getQuantidadeLinhas()
      {
-         return linhas.size();
+         return hasLinhas()? linhas.size() : 0;
      }
      
      public String getLinhaSelecionada()
      {
-         return linhas.get(linhaSelecionada);
+         return hasLinhas()? linhas.get(linhaSelecionada) : "";
+     }
+     
+     public boolean hasLinhas()
+     {
+         return linhas!=null & linhas.size()>0;
+     }
+     
+     public boolean hasLayout()
+     {
+         return layouts!=null & layouts.size()>0;
      }
 }

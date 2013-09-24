@@ -1,7 +1,12 @@
 package layarq.VIEW;
+import HELPER.MessageHelper;
+import javax.swing.JFrame;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import layarq.Objetos.LayoutTableModel;
 import layarq.CONTROLLER.MainController;
+import layarq.Objetos.Layout;
 
 /**
  *
@@ -10,13 +15,36 @@ import layarq.CONTROLLER.MainController;
 public class MainView extends View {
 
     MainController controller =  new MainController();
-    
+    LayoutTableModel layoutTableModel = new LayoutTableModel();
     /**
      * Creates new form MainView
      */
     public MainView() {
         this.setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        
+        tblLayouts.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int r = tblLayouts.getSelectedRow();
+                if(layoutTableModel!=null)
+                try {
+                    Layout valor = layoutTableModel.getLinha(r);
+                    if(valor!=null
+                      & valor.posicaoInicial+valor.posicaoFinal>0)
+                    {   
+                        txtLinhaSelecionada.requestFocus();
+                        txtLinhaSelecionada.setCaretPosition(valor.posicaoInicial-1);
+                        txtLinhaSelecionada.setSelectionStart(valor.posicaoInicial-1);
+                        txtLinhaSelecionada.setSelectionEnd(valor.posicaoFinal);
+                    }
+                } catch (java.lang.IllegalArgumentException i) {
+                } catch (java.lang.NullPointerException np) {}
+            }
+
+    });
+
     }
 
     @SuppressWarnings("unchecked")
@@ -35,10 +63,15 @@ public class MainView extends View {
         jLabel3 = new javax.swing.JLabel();
         btnAnalisar = new javax.swing.JButton();
         txtLinhaSelecionada = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        lbltamanhoLinha = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblTotalLinhas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Validador de Layout de Arquivo");
 
-        jLabel1.setText("Selecione o Layout");
+        jLabel1.setText("Selecione o Arquivo para Analisar");
 
         btnSelecionarLayout.setText("Selec.");
         btnSelecionarLayout.addActionListener(new java.awt.event.ActionListener() {
@@ -55,10 +88,10 @@ public class MainView extends View {
                 "Dados"
             }
         ));
-        tblLayouts.setRowSelectionAllowed(false);
+        tblLayouts.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tblLayouts);
 
-        jLabel2.setText("Selecione o Arquivo para Analisar");
+        jLabel2.setText("Selecione o Layout");
 
         btnSelecionarArquivo.setText("Selec.");
         btnSelecionarArquivo.addActionListener(new java.awt.event.ActionListener() {
@@ -76,80 +109,125 @@ public class MainView extends View {
             }
         });
 
+        jLabel4.setText("Tamanho da Linha:");
+
+        lbltamanhoLinha.setText("0");
+
+        jLabel5.setText("Total de Linhas");
+
+        lblTotalLinhas.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtLinhaSelecionada)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxLinha, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAnalisar))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtArquivoValidar)
-                            .addComponent(txtArquivoLayout))
+                            .addComponent(txtArquivoLayout)
+                            .addComponent(txtArquivoValidar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSelecionarLayout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSelecionarArquivo))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSelecionarArquivo)
+                            .addComponent(btnSelecionarLayout)))
+                    .addComponent(txtLinhaSelecionada)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbxLinha, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAnalisar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbltamanhoLinha)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTotalLinhas))
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(5, 5, 5)
                 .addComponent(jLabel1)
-                .addGap(0, 0, 0)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtArquivoLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSelecionarLayout))
-                .addGap(0, 0, 0)
+                    .addComponent(btnSelecionarArquivo)
+                    .addComponent(txtArquivoValidar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
                 .addComponent(jLabel2)
-                .addGap(0, 0, 0)
+                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtArquivoValidar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSelecionarArquivo))
+                    .addComponent(btnSelecionarLayout)
+                    .addComponent(txtArquivoLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxLinha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(btnAnalisar))
-                .addGap(1, 1, 1)
-                .addComponent(txtLinhaSelecionada, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                    .addComponent(btnAnalisar)
+                    .addComponent(jLabel4)
+                    .addComponent(lbltamanhoLinha)
+                    .addComponent(jLabel5)
+                    .addComponent(lblTotalLinhas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtLinhaSelecionada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelecionarLayoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarLayoutActionPerformed
-        txtArquivoLayout.setText(controller.selecionaLayout());
-        tblLayouts.setModel(controller.getLayoutTableModel());
+        String startPath = txtArquivoLayout.getText();
+        txtArquivoLayout.setText(controller.selecionaLayout(startPath));
+        setJTable();
     }//GEN-LAST:event_btnSelecionarLayoutActionPerformed
 
     private void btnSelecionarArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarArquivoActionPerformed
-        txtArquivoValidar.setText(controller.selecionaArquivo());
-        cbxLinha.setModel(new SpinnerNumberModel(1, 1, controller.getQuantidadeLinhas(),1));
+        try 
+        {
+            String startPath = txtArquivoValidar.getText();
+            txtArquivoValidar.setText(controller.selecionaArquivo(startPath));
+            if(controller.hasLinhas())
+            { 
+                cbxLinha.setModel(new SpinnerNumberModel(1, 1, controller.getQuantidadeLinhas(),1));
+                lblTotalLinhas.setText(controller.getQuantidadeLinhas()+"");
+            }
+            
+        } catch (IllegalArgumentException e) {}
+        
     }//GEN-LAST:event_btnSelecionarArquivoActionPerformed
 
     private void btnAnalisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalisarActionPerformed
         int linha = (Integer)cbxLinha.getValue();
         controller.selecionaLinha(linha-1);
         txtLinhaSelecionada.setText(controller.getLinhaSelecionada());
-        tblLayouts.setModel(controller.getLayoutTableModel());
+        lbltamanhoLinha.setText(""+controller.getLinhaSelecionada().length());
+        setJTable();
     }//GEN-LAST:event_btnAnalisarActionPerformed
-
+   
+    public void setJTable()
+    {
+        try {
+            layoutTableModel = controller.getLayoutTableModel();
+            if(layoutTableModel!=null)
+            tblLayouts.setModel(layoutTableModel);
+        } catch (java.lang.NullPointerException npe) {
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -187,7 +265,11 @@ public class MainView extends View {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTotalLinhas;
+    private javax.swing.JLabel lbltamanhoLinha;
     private javax.swing.JTable tblLayouts;
     private javax.swing.JTextField txtArquivoLayout;
     private javax.swing.JTextField txtArquivoValidar;
