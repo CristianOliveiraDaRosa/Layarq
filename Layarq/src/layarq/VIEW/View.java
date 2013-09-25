@@ -8,7 +8,7 @@ import layarq.HELPERS.ViewHelper;
 
 /**
  *
- * @author cristian.oliveira
+ * @author cristian.oliveira (www.cristianoliveira.com.br)
  */
 public class View extends javax.swing.JFrame {
      ViewHelper viewHelper = new ViewHelper();

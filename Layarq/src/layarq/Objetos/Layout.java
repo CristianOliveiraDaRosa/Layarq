@@ -6,7 +6,7 @@ package layarq.Objetos;
 
 /**
  *
- * @author cristian.oliveira
+ * @author cristian.oliveira (www.cristianoliveira.com.br)
  */
 public class Layout {
        public String linha;
@@ -14,6 +14,7 @@ public class Layout {
        public int posicaoInicial;
        public int posicaoFinal;
        public int tamanho;
+       private String tipoEsperado; //Tipo de valor esperado Alpha|Número
        
        public String getValor()
        {
@@ -41,7 +42,11 @@ public class Layout {
        public String getTipo()
        {   
            String valor = getValor();
-           if(!valor.isEmpty())
+           if(valor.equals("**FORA DA LINHA**"))
+           {    
+               return "Erro";
+           }
+           else if(!valor.isEmpty())
             try 
             { 
                Long.parseLong(valor); 
@@ -52,5 +57,34 @@ public class Layout {
                 return "Alpha"; 
             }
            return "";
+       }
+       
+       public void setTipoEsperado(String pTipoEsperado)
+       {
+           if(pTipoEsperado.equals("N"))
+               tipoEsperado = "Número";
+           else
+               tipoEsperado = "Alpha";
+       }
+       
+       public String getTipoEsperado()
+       {
+           return tipoEsperado==null? "*": tipoEsperado; 
+       }
+       
+       public String validaTipo()
+       {
+            if(getValor().equals("**FORA DA LINHA**"))
+                return "ERRO";
+            else if(tipoEsperado==null)
+                return "";
+            else
+            {
+                if(tipoEsperado.equals(getTipo()))
+                    return "OK";
+                else
+                    return "ERRO";
+            }
+           
        }
 }

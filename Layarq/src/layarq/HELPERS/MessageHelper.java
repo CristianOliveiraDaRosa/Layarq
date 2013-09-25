@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author cristian.oliveira
+ * @author cristian.oliveira (www.cristianoliveira.com.br)
  */
 public class MessageHelper {
     

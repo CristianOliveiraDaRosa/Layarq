@@ -6,7 +6,7 @@ package layarq.CONTROLLER;
 
 /**
  *
- * @author cristian.oliveira
+ * @author cristian.oliveira (www.cristianoliveira.com.br)
  */
 public class Controller {
     

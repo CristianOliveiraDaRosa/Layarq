@@ -9,11 +9,13 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author cristian.oliveira
+ * @author cristian.oliveira (www.cristianoliveira.com.br)
  */
 public class LayoutTableModel extends AbstractTableModel{
-    private String[] colunas = {"Descrição","Pos. Ini","Pos Fim","Tamanho","Valor","Tipo"};
+    private String[] colunas = {"Descrição","Pos. Ini","Pos Fim","Tipo Esperado","Tamanho","Valor","Tipo Encontrado","Resultado"};
     private ArrayList<Layout> dados  = new ArrayList<Layout>();
+    boolean hasTipoEsperado;
+    int erros = 0;
     
     @Override
     public int getRowCount() {
@@ -30,6 +32,11 @@ public class LayoutTableModel extends AbstractTableModel{
         return colunas[pColuna];
     }
     
+    public void setColumns(String[] pColunas)
+    {
+        colunas = pColunas;
+    }
+    
     @Override
     public Object getValueAt(int pLinha, int pColuna) {
         Layout dado = dados.get(pLinha);
@@ -39,10 +46,12 @@ public class LayoutTableModel extends AbstractTableModel{
             case 0: return dado.descricao;
             case 1: return dado.posicaoInicial;
             case 2: return dado.posicaoFinal;
-            case 3: return dado.tamanho;
-            case 4: return dado.getValor();
-            case 5: return dado.getTipo();
-                default: return null;
+            case 3: return dado.getTipoEsperado();
+            case 4: return dado.tamanho;
+            case 5: return dado.getValor();
+            case 6: return dado.getTipo();
+            case 7: return dado.validaTipo();
+                   default: return null;
         }
     }
     
@@ -69,5 +78,32 @@ public class LayoutTableModel extends AbstractTableModel{
     public boolean hasDados()
     {
         return dados!=null;
+    }
+    
+    public int getQuantidadeErros()
+    {
+        erros=0;
+        for (int i = 0; i < dados.size(); i++) {
+            Layout l = dados.get(i);
+            if(l.validaTipo().equals("ERRO")
+             ||l.getValor().equals("**FORA DA LINHA**"))
+                erros++;
+        }
+        return erros;
+    }
+    
+    public boolean hasErros(int pLinha)
+    {
+        return dados.get(pLinha).validaTipo().equals("ERRO");
+    }
+    
+    public boolean hasErros()
+    {
+        return erros>0;
+    }
+    
+    public boolean hasTipoEsperado()
+    {
+        return hasDados()? dados.get(0).getTipoEsperado()!="INDEFINIDO" : false;
     }
 }

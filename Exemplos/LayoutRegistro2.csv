@@ -1,45 +1,45 @@
-Código do registro = „2? (dois) (1);1;1;1
-Código do Banco (1);2;4;3
-Digito do Banco (1);5;5;1
-Nome do Banco (1);6;20;15
-Primeiro campo da Linha Digitavel (1);21;25;5
-Segundo campo da Linha Digitavel (1);26;30;5
-Terceiro campo da Linha Digitavel (1);31;35;5
-Quarto campo da Linha Digitavel (1);36;41;6
-Quinto campo da Linha Digitavel (1);42;46;5
-Sexto campo da Linha Digitavel (1);47;52;6
-Sétimo campo da Linha Digitavel (1);53;53;1
-Oitavo campo da Linha Digitavel (1);54;67;14
-Texto do Local de Pagamento;68;137;70
-Deixar em Branco;138;207;70
-Data do vencimento do boleto – AAAAMMDD ou Branco(caso queira a expressão “CONTRA APRESENTACAO“;208;215;8
-"Tipo de pessoa do cedente; Física (F) ou Jurídica( J )";216;216;1
-Tipo do primeiro docto. do cedente: 1-CNPJ ou 2-CPF;217;217;1
-Documento do cedente:;218;232;15
-Nome do cedente do título.;233;272;40
-Código e Digito da Agência + Código e Digito do cedente (1);273;297;25
-Data do documento – AAAAMMDD (1);298;305;8
-Número do documento (1);306;330;25
-Sigla da espécie do documento – exemplo: NF, DP, etc.;331;335;5
-Código do aceite do título N ou S;336;338;3
-Para uso do banco;339;355;17
-Deixar em branco;356;358;3
-Data do Processamento – AAAAMMDD;359;366;8
-Nosso número;367;391;25
-Número da Carteira;392;396;5
-Espécie de Moeda (R$);397;399;3
-Quantidade de Moeda;400;408;9
-Qtde de decimais do Valor da Moeda;409;409;1
-Valor da Moeda;410;418;9
-Valor do boleto (valor a ser pago pelo devedor ) com 2 decimais, sem;419;433;15
-Valor do desconto, caso houver, com 2 decimais, sem ponto e virgula;434;448;15
-Valor de outras deduções, caso houver, com 2 decimais, sem ponto e;449;463;15
-Valor da mora ou multa, caso houver, com 2 decimais, sem ponto e virgula;464;478;15
-Valor de outros acréscimos, caso houver, com 2 decimais, sem ponto e virgula;479;493;15
-Valor total a ser cobrado, com 2 decimais, sem ponto e virgula.;494;508;15
-"Tipo de pessoa do sacador; Física (F) ou Jurídica (J )";509;509;1
-Tipo do primeiro docto. do sacador: 1-CNPJ ou 2-CPF;510;510;1
-Documento do sacador:;511;525;15
-Nome do Sacador / Avalista;526;575;50
-Deixar em branco;576;593;18
-Seqüência do registro no arquivo;594;600;7
+Código do registro = „2? (dois) (1);1;1;;1
+Código do Banco (1);2;4;;3
+Digito do Banco (1);5;5;;1
+Nome do Banco (1);6;20;;15
+Primeiro campo da Linha Digitavel (1);21;25;;5
+Segundo campo da Linha Digitavel (1);26;30;;5
+Terceiro campo da Linha Digitavel (1);31;35;;5
+Quarto campo da Linha Digitavel (1);36;41;;6
+Quinto campo da Linha Digitavel (1);42;46;;5
+Sexto campo da Linha Digitavel (1);47;52;;6
+Sétimo campo da Linha Digitavel (1);53;53;;1
+Oitavo campo da Linha Digitavel (1);54;67;;14
+Texto do Local de Pagamento;68;137;;70
+Deixar em Branco;138;207;;70
+Data do vencimento do boleto – AAAAMMDD ou Branco(caso queira a expressão “CONTRA APRESENTACAO“;208;215;;8
+"Tipo de pessoa do cedente; Física (F) ou Jurídica( J )";216;216;;1
+Tipo do primeiro docto. do cedente: 1-CNPJ ou 2-CPF;217;217;;1
+Documento do cedente:;218;232;;15
+Nome do cedente do título.;233;272;;40
+Código e Digito da Agência + Código e Digito do cedente (1);273;297;;25
+Data do documento – AAAAMMDD (1);298;305;;8
+Número do documento (1);306;330;;25
+Sigla da espécie do documento – exemplo: NF, DP, etc.;331;335;;5
+Código do aceite do título N ou S;336;338;;3
+Para uso do banco;339;355;;17
+Deixar em branco;356;358;;3
+Data do Processamento – AAAAMMDD;359;366;;8
+Nosso número;367;391;;25
+Número da Carteira;392;396;;5
+Espécie de Moeda (R$);397;399;;3
+Quantidade de Moeda;400;408;;9
+Qtde de decimais do Valor da Moeda;409;409;;1
+Valor da Moeda;410;418;;9
+Valor do boleto (valor a ser pago pelo devedor ) com 2 decimais, sem;419;433;;15
+Valor do desconto, caso houver, com 2 decimais, sem ponto e virgula;434;448;;15
+Valor de outras deduções, caso houver, com 2 decimais, sem ponto e;449;463;;15
+Valor da mora ou multa, caso houver, com 2 decimais, sem ponto e virgula;464;478;;15
+Valor de outros acréscimos, caso houver, com 2 decimais, sem ponto e virgula;479;493;;15
+Valor total a ser cobrado, com 2 decimais, sem ponto e virgula.;494;508;;15
+"Tipo de pessoa do sacador; Física (F) ou Jurídica (J )";509;509;;1
+Tipo do primeiro docto. do sacador: 1-CNPJ ou 2-CPF;510;510;;1
+Documento do sacador:;511;525;;15
+Nome do Sacador / Avalista;526;575;;50
+Deixar em branco;576;593;;18
+Seqüência do registro no arquivo;594;600;;7

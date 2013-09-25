@@ -11,7 +11,7 @@ import layarq.Objetos.LayoutTableModel;
 
 /**
  *
- * @author cristian.oliveira
+ * @author cristian.oliveira (www.cristianoliveira.com.br)
  */
 public class MainController extends Controller {
     
@@ -34,12 +34,15 @@ public class MainController extends Controller {
      
      public LayoutTableModel getLayoutTableModel()
      {
-         if(linhas.size()>0)
-         {
-             for (int i = 0; i < layouts.size(); i++) {
-                 layouts.get(i).linha = linhas.get(linhaSelecionada);
-             }
-         }
+         try{
+            if(linhas.size()>0)
+            {
+                for (int i = 0; i < layouts.size(); i++) {
+                    layouts.get(i).linha = linhas.get(linhaSelecionada);
+                }
+            }
+         }catch(ArrayIndexOutOfBoundsException ie)
+         {}
          return model.getLayoutTableModel(layouts);
      }
      

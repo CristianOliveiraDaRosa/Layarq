@@ -8,13 +8,16 @@ import java.io.BufferedReader;
 import javax.swing.JFileChooser;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import layarq.Objetos.Layout;
 import layarq.Objetos.LayoutTableModel;
 /**
  *
- * @author cristian.oliveira
+ * @author cristian.oliveira (www.cristianoliveira.com.br)
  */
 public class FileModel extends Model{
     
@@ -36,9 +39,9 @@ public class FileModel extends Model{
     public ArrayList<String> getLinhasArquivo(File pFile)
     {
         ArrayList<String> linhas = new ArrayList<String>();
+        BufferedReader br = null;
         if(pFile!=null)
         try {
-            BufferedReader br;
             br = new BufferedReader(new FileReader(arquivoValidar));
             String linha = "";
             while ((linha = br.readLine())!= null) {                
@@ -47,6 +50,14 @@ public class FileModel extends Model{
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Arquivo inválido");
         }
+        
+       if(br!=null)
+       try {
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(FileModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         return linhas;
     }
     
@@ -71,8 +82,8 @@ public class FileModel extends Model{
     public ArrayList<Layout> geraLayoutsFromFile(File file)
     {
         ArrayList<Layout> list = new ArrayList<Layout>();
+        BufferedReader br = null;
         try {
-            BufferedReader br;
             br = new BufferedReader(new FileReader(arquivoLayout));
             String linha;
             while ((linha = br.readLine())!= null) {                
@@ -85,6 +96,13 @@ public class FileModel extends Model{
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Arquivo inválido");
+        }
+        
+        if(br!=null)
+        try {
+             br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(FileModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return list;
@@ -100,7 +118,8 @@ public class FileModel extends Model{
             layout.descricao      = dados[0];
             layout.posicaoInicial = Integer.parseInt(dados[1]);
             layout.posicaoFinal   = Integer.parseInt(dados[2]);
-            
+            if(dados.length>3)
+             layout.setTipoEsperado(dados[3]);
         } catch (Exception e) {
             return null;
         }

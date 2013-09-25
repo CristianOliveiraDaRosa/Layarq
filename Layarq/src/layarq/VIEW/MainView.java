@@ -1,16 +1,21 @@
 package layarq.VIEW;
+import java.awt.Color;
+import javax.swing.CellRendererPane;
 import layarq.HELPERS.MessageHelper;
 import javax.swing.JFrame;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import layarq.Objetos.LayoutTableModel;
 import layarq.CONTROLLER.MainController;
 import layarq.Objetos.Layout;
+import layarq.Objetos.ThemeJTableListener;
 
 /**
  *
- * @author cristian.oliveira
+ * @author cristian.oliveira (www.cristianoliveira.com.br)
  */
 public class MainView extends View {
 
@@ -68,10 +73,13 @@ public class MainView extends View {
         lbltamanhoLinha = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblTotalLinhas = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblResultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Validador de Layout de Arquivo");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Selecione o Arquivo para Analisar");
 
         btnSelecionarLayout.setText("Selec.");
@@ -92,6 +100,7 @@ public class MainView extends View {
         tblLayouts.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tblLayouts);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Selecione o Layout");
 
         btnSelecionarArquivo.setText("Selec.");
@@ -118,6 +127,10 @@ public class MainView extends View {
 
         lblTotalLinhas.setText("0");
 
+        jLabel6.setText("Analise:");
+
+        lblResultado.setText("(Resultado)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,18 +139,14 @@ public class MainView extends View {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtArquivoLayout)
-                            .addComponent(txtArquivoValidar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSelecionarArquivo)
-                            .addComponent(btnSelecionarLayout)))
                     .addComponent(txtLinhaSelecionada)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -151,9 +160,17 @@ public class MainView extends View {
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTotalLinhas))
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(lblTotalLinhas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtArquivoLayout, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtArquivoValidar, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSelecionarArquivo)
+                            .addComponent(btnSelecionarLayout))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -179,16 +196,17 @@ public class MainView extends View {
                     .addComponent(jLabel4)
                     .addComponent(lbltamanhoLinha)
                     .addComponent(jLabel5)
-                    .addComponent(lblTotalLinhas))
+                    .addComponent(lblTotalLinhas)
+                    .addComponent(jLabel6)
+                    .addComponent(lblResultado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtLinhaSelecionada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelecionarLayoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarLayoutActionPerformed
@@ -218,6 +236,18 @@ public class MainView extends View {
         txtLinhaSelecionada.setText(controller.getLinhaSelecionada());
         lbltamanhoLinha.setText(""+controller.getLinhaSelecionada().length());
         setJTable();
+        
+        int qtdeErros = layoutTableModel.getQuantidadeErros();
+        if(qtdeErros>0)
+        {
+            lblResultado.setForeground(Color.RED);
+            lblResultado.setText(qtdeErros==1? qtdeErros+" erro." : qtdeErros+" erros.");
+        }
+        else
+        {
+            lblResultado.setForeground(Color.BLUE);
+            lblResultado.setText("Aparentemente sem erros...");
+        }
     }//GEN-LAST:event_btnAnalisarActionPerformed
    
     public void setJTable()
@@ -226,6 +256,11 @@ public class MainView extends View {
             layoutTableModel = controller.getLayoutTableModel();
             if(layoutTableModel!=null)
             tblLayouts.setModel(layoutTableModel);
+            
+            for (int i = 0; i < tblLayouts.getColumnCount(); i++) {
+                tblLayouts.setDefaultRenderer(tblLayouts.getColumnClass(i), new ThemeJTableListener());
+            }
+            
         } catch (java.lang.NullPointerException npe) {
         }
     }
@@ -268,7 +303,9 @@ public class MainView extends View {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblResultado;
     private javax.swing.JLabel lblTotalLinhas;
     private javax.swing.JLabel lbltamanhoLinha;
     private javax.swing.JTable tblLayouts;

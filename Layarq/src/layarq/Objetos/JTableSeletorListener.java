@@ -9,7 +9,7 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author cristian.oliveira
+ * @author cristian.oliveira (www.cristianoliveira.com.br)
  */
 public class JTableSeletorListener implements ListSelectionListener{
 

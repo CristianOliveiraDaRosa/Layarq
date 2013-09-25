@@ -5,7 +5,7 @@
 package layarq.HELPERS;
 
 /*
- * @author cristian.oliveira
+ * @author cristian.oliveira (www.cristianoliveira.com.br)
  */
 public class ViewHelper {
   
