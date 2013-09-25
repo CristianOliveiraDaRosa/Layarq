@@ -46,11 +46,11 @@ public class LayoutTableModel extends AbstractTableModel{
             case 0: return dado.descricao;
             case 1: return dado.posicaoInicial;
             case 2: return dado.posicaoFinal;
-            case 3: return dado.getTipoEsperado();
+            case 3: return dado.getStrTipoEsperado();
             case 4: return dado.tamanho;
             case 5: return dado.getValor();
             case 6: return dado.getTipo();
-            case 7: return dado.validaTipo();
+            case 7: return dado.getErro();
                    default: return null;
         }
     }
@@ -85,8 +85,7 @@ public class LayoutTableModel extends AbstractTableModel{
         erros=0;
         for (int i = 0; i < dados.size(); i++) {
             Layout l = dados.get(i);
-            if(l.validaTipo().equals("ERRO")
-             ||l.getValor().equals("**FORA DA LINHA**"))
+            if(l.hasErro())
                 erros++;
         }
         return erros;
@@ -94,7 +93,7 @@ public class LayoutTableModel extends AbstractTableModel{
     
     public boolean hasErros(int pLinha)
     {
-        return dados.get(pLinha).validaTipo().equals("ERRO");
+        return dados.get(pLinha).getErro().equals("ERRO");
     }
     
     public boolean hasErros()
@@ -104,6 +103,6 @@ public class LayoutTableModel extends AbstractTableModel{
     
     public boolean hasTipoEsperado()
     {
-        return hasDados()? dados.get(0).getTipoEsperado()!="INDEFINIDO" : false;
+        return hasDados()? dados.get(0).getStrTipoEsperado()!="INDEFINIDO" : false;
     }
 }

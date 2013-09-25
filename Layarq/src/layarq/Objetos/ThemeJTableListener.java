@@ -29,9 +29,14 @@ public class ThemeJTableListener
             row,  
             column  
         );  
+        LayoutTableModel ltm = (LayoutTableModel)table.getModel();
+        Layout lay = ltm.getLinha(row);
         
-        if(value.equals("ERRO")) {
-            result.setForeground(Color.red);
+        if(lay.hasErro()) {
+            if(lay.getErro().equals("ATENCAO"))
+               result.setForeground(Color.ORANGE);
+            else
+               result.setForeground(Color.red);
         }
         else
         {
