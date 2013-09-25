@@ -1,0 +1,16 @@
+Código do registro = „0? (zero) (1);1;1;N
+Número do CNPJ da instituição informante ajustado à direita e preenchido com zeros à esquerda (1);2;10;N
+Data do movimento (AAAAMMDD) – data de geração do arquivo (1);11;18;N
+Número de DDD do telefone de contato da instituição informante (1);19;22;N
+Número do telefone de contato da instituição informante (1);23;30;N
+Número de ramal do telefone de contato da instituição informante (1);31;34;N
+Nome do contato da instituição informante (1);35;104;A
+Identificação do arquivo fixo “SERASA-CONVEM04” (1);105;119;A
+Número da remessa do arquivo seqüencial do 000001, incrementando de 1 a cada novo movimento (1);120;125;N
+Código de envio de arquivo: (1);126;126;A
+Diferencial de remessa, caso a instituição informante tenha necessidade de enviar mais de uma remessa independentes por deptos., no mesmo dia, de 0000 à 9999. Caso contrário, em branco.;127;130;A
+Deixar em branco;131;133;A
+Informar o LOGON a ser utilizado na contabilização das cartas comunicado e anotações.;134;141;A
+Deixar em branco;142;533;A
+Código de erros – 3 posições ocorrendo 20 vezes. Ausência de códigos indica que foi aceito no movimento de retorno. Na entrada, preencher com brancos.;534;593;A
+Seqüência do registro no arquivo igual a 0000001 para o header. (1);594;600;N
