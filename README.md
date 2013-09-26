@@ -21,5 +21,6 @@ Análises que podem ser realizadas</br>
   <li>Tamanho atual da linha</li>
   <li>Conforme a seleção no GRID a posição na linha é grifada</li>
 </ul>
-Autor:Cristian Oliveira
-Site:www.cristianoliveira.com.br
+
+<strong>Autor:Cristian Oliveira</strong></br>
+<strong>Site:www.cristianoliveira.com.br</strong>
