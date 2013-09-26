@@ -22,5 +22,4 @@ Análises que podem ser realizadas</br>
   <li>Conforme a seleção no GRID a posição na linha é grifada</li>
 </ul>
 
-<strong>Autor:Cristian Oliveira</strong></br>
-<strong>Site:www.cristianoliveira.com.br</strong>
+<strong>Autor: Cristian Oliveira (www.cristianoliveira.com.br)</strong>
