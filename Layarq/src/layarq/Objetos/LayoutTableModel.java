@@ -93,7 +93,7 @@ public class LayoutTableModel extends AbstractTableModel{
     
     public boolean hasErros(int pLinha)
     {
-        return dados.get(pLinha).getErro().equals("ERRO");
+        return dados.get(pLinha).hasErro();
     }
     
     public boolean hasErros()
@@ -103,6 +103,6 @@ public class LayoutTableModel extends AbstractTableModel{
     
     public boolean hasTipoEsperado()
     {
-        return hasDados()? dados.get(0).getStrTipoEsperado()!="INDEFINIDO" : false;
+        return hasDados()? dados.get(0).getTipoEsperado()!= Layout.TipoDado.INDENFIDO : false;
     }
 }

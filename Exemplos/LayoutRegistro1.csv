@@ -1,43 +1,43 @@
-Código do registro = „1? – detalhes (1)(2);1;1
-Código da Operação  I – inclusão E – exclusão (1)(2);2;2
-Filial e dígito do CNPJ da contratante (1);3;8
-Data da ocorrência ( AAAAMMDD) – data do vencimento da dívida, não superior a 4 anos e 11 meses , e inferior à 4 dias da data do movimento (1);9;16
-Data do término do contrato – formato “AAAAMMDD” . Caso não possua , repetir a data da ocorrência (vide observação 1 para natureza “DC”) (1);17;24
-Código de natureza da operação (1);25;27
-Código da praça Embratel (que originou a dívida );28;31
-Tipo de pessoa do principal: F – Física ou J – Jurídica (3)(4)(5);32;32
-Tipo do primeiro docto. do principal: 1 – CNPJ ou 2 – CPF (3)(4)(5);33;33
+ï»¿CÃ³digo do registro = â€1? â€“ detalhes (1)(2);1;1
+CÃ³digo da OperaÃ§Ã£o  I â€“ inclusÃ£o E â€“ exclusÃ£o (1)(2);2;2
+Filial e dÃ­gito do CNPJ da contratante (1);3;8
+Data da ocorrÃªncia ( AAAAMMDD) â€“ data do vencimento da dÃ­vida, nÃ£o superior a 4 anos e 11 meses , e inferior Ã  4 dias da data do movimento (1);9;16
+Data do tÃ©rmino do contrato â€“ formato â€œAAAAMMDDâ€ . Caso nÃ£o possua , repetir a data da ocorrÃªncia (vide observaÃ§Ã£o 1 para natureza â€œDCâ€) (1);17;24
+CÃ³digo de natureza da operaÃ§Ã£o (1);25;27
+CÃ³digo da praÃ§a Embratel (que originou a dÃ­vida );28;31
+Tipo de pessoa do principal: F â€“ FÃ­sica ou J â€“ JurÃ­dica (3)(4)(5);32;32
+Tipo do primeiro docto. do principal: 1 â€“ CNPJ ou 2 â€“ CPF (3)(4)(5);33;33
 Primeiro documento do principal:;34;48
 Motivo da baixa (2)(5);49;50
-Tipo do segundo documento do principal: 3 – RG, se houver.;51;51
-Segundo documento do principal, se houver, se não, espaços.;52;66
-UF quando documento for RG, se não, espaços.;67;68
+Tipo do segundo documento do principal: 3 â€“ RG, se houver.;51;51
+Segundo documento do principal, se houver, se nÃ£o, espaÃ§os.;52;66
+UF quando documento for RG, se nÃ£o, espaÃ§os.;67;68
 Tipo de pessoa do coobrigado:;69;69
 Tipo do primeiro documento do coobrigado:;70;70
 Primeiro documento do coobrigado:;71;85
-Espaços;86;87
-Tipo do segundo documento do coobrigado: 3 – RG, se houver, se não, espaços ( só para pessoa física );88;88
-Segundo documento do coobrigado, se houver, se não, espaços.;89;103
-Unidade da Federação, quando documento for RG, se não, espaços.;104;105
+EspaÃ§os;86;87
+Tipo do segundo documento do coobrigado: 3 â€“ RG, se houver, se nÃ£o, espaÃ§os ( sÃ³ para pessoa fÃ­sica );88;88
+Segundo documento do coobrigado, se houver, se nÃ£o, espaÃ§os.;89;103
+Unidade da FederaÃ§Ã£o, quando documento for RG, se nÃ£o, espaÃ§os.;104;105
 Nome do devedor (1)(4)(6);106;175
-A data do nascimento (AAAAMMDD) deve ser superior a 18 anos ( só para pessoa física ). Se não, colocar 00000000.;176;183
-Nome do pai. Caso não possua, brancos.;184;253
-Nome da mãe. Caso não possua, brancos.;254;323
-Endereço completo (rua, Av., nº etc.) (1);324;368
+A data do nascimento (AAAAMMDD) deve ser superior a 18 anos ( sÃ³ para pessoa fÃ­sica ). Se nÃ£o, colocar 00000000.;176;183
+Nome do pai. Caso nÃ£o possua, brancos.;184;253
+Nome da mÃ£e. Caso nÃ£o possua, brancos.;254;323
+EndereÃ§o completo (rua, Av., nÂº etc.) (1);324;368
 Bairro correspondente (1);369;388
-Município correspondente (1);389;413
+MunicÃ­pio correspondente (1);389;413
 Sigla Unidade Federativa (1);414;415
-Código de endereçamento postal completo (1);416;423
+CÃ³digo de endereÃ§amento postal completo (1);416;423
 Valor com 2 decimais, alinhar a direita com zeros a esquerda (1);424;438
-O número do contrato deve ser único para o principal e seus coobrigados (Vide observação 2 para natureza “DC” e observação 4 );439;454
-Nosso número (Vide observação 3 para natureza “DC”);455;463
-Complemento do endereço do devedor – usar somente quando o campo de seq. Nr. 26 (endereço completo) não for suficiente.;464;488
+O nÃºmero do contrato deve ser Ãºnico para o principal e seus coobrigados (Vide observaÃ§Ã£o 2 para natureza â€œDCâ€ e observaÃ§Ã£o 4 );439;454
+Nosso nÃºmero (Vide observaÃ§Ã£o 3 para natureza â€œDCâ€);455;463
+Complemento do endereÃ§o do devedor â€“ usar somente quando o campo de seq. Nr. 26 (endereÃ§o completo) nÃ£o for suficiente.;464;488
 DDD do telefone do devedor.;489;492
-Número do telefone do devedor.;493;501
+NÃºmero do telefone do devedor.;493;501
 Data do compromisso assumido pelo devedor - formato AAAAMMDD.;502;509
 Valor total do compromisso assumido pelo devedor, com 2 decimais, sem ponto e virgula.;510;524
 Deixar em branco;525;530
 Indicativo do Tipo de Comunicado ao Devedor:;531;531
 Deixar em branco;532;533
-Códigos de erros – 3 posições ocorrendo 20 vezes. Ausência de códigos indica que o registro foi aceito no movto de retorno. Na entrada, preencher com brancos.;534;593
-Seqüência do registro no arquivo (1) (2);594;600
+CÃ³digos de erros â€“ 3 posiÃ§Ãµes ocorrendo 20 vezes. AusÃªncia de cÃ³digos indica que o registro foi aceito no movto de retorno. Na entrada, preencher com brancos.;534;593
+SeqÃ¼Ãªncia do registro no arquivo (1) (2);594;600
