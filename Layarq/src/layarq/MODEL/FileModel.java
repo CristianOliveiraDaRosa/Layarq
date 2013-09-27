@@ -7,14 +7,17 @@ package layarq.MODEL;
 import java.io.BufferedReader;
 import javax.swing.JFileChooser;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import layarq.Objetos.Layout;
 import layarq.Objetos.LayoutTableModel;
+import layarq.Objetos.LinhaTableModel;
 /**
  *
  * @author cristian.oliveira (www.cristianoliveira.com.br)
@@ -84,7 +87,7 @@ public class FileModel extends Model{
         ArrayList<Layout> list = new ArrayList<Layout>();
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new FileReader(arquivoLayout));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(arquivoLayout)));
             String linha;
             while ((linha = br.readLine())!= null) {                
                 if(!linha.isEmpty())
@@ -131,6 +134,14 @@ public class FileModel extends Model{
     {
          LayoutTableModel ltm = new LayoutTableModel();
          ltm.setLayouts(pLayouts);
+         
+         return ltm;
+    }
+    
+    public LinhaTableModel getLinhaTableModel(ArrayList<String> pDados)
+    {
+         LinhaTableModel ltm = new LinhaTableModel();
+         ltm.setDados(pDados);
          
          return ltm;
     }

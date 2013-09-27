@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import layarq.MODEL.FileModel;
 import layarq.Objetos.Layout;
 import layarq.Objetos.LayoutTableModel;
+import layarq.Objetos.LinhaTableModel;
 
 /**
  *
@@ -69,5 +70,10 @@ public class MainController extends Controller {
      public boolean hasLayout()
      {
          return layouts!=null & layouts.size()>0;
+     }
+     
+     public LinhaTableModel getLinhaTableModel()
+     {
+         return model.getLinhaTableModel(linhas);
      }
 }
