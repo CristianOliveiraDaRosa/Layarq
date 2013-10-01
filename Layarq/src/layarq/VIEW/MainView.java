@@ -1,13 +1,8 @@
 package layarq.VIEW;
 import java.awt.Color;
-import javax.swing.CellRendererPane;
-import layarq.HELPERS.MessageHelper;
 import javax.swing.JFrame;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
 import layarq.Objetos.LayoutTableModel;
 import layarq.CONTROLLER.MainController;
 import layarq.Objetos.Layout;
@@ -40,7 +35,7 @@ public class MainView extends View {
                       & valor.posicaoInicial+valor.posicaoFinal>0)
                     {   
                         txtLinhaSelecionada.requestFocus();
-                        txtLinhaSelecionada.setCaretPosition(0);
+                        txtLinhaSelecionada.setSelectionEnd(0);
                         txtLinhaSelecionada.setCaretPosition(valor.posicaoInicial-1);
                         txtLinhaSelecionada.setSelectionStart(valor.posicaoInicial-1);
                         txtLinhaSelecionada.setSelectionEnd(valor.posicaoFinal);
@@ -51,13 +46,14 @@ public class MainView extends View {
 
     });
     
-        tblLinhas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+      tblLinhas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 int linhaSelecionada = tblLinhas.getSelectedRow();
                 try {
                   controller.selecionaLinha(linhaSelecionada);
                   txtLinhaSelecionada.setText(tblLinhas.getValueAt(linhaSelecionada,0).toString());
+                  txtLinhaSelecionada.setCaretPosition(0);
                   btnAnalisarActionPerformed(null);
                 } catch (java.lang.IllegalArgumentException i) {
                 } catch (java.lang.NullPointerException np) {}
@@ -97,6 +93,7 @@ public class MainView extends View {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Layarq - Validador de Layout de Arquivo");
+        setMinimumSize(new java.awt.Dimension(800, 600));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Selecione o Arquivo para Analisar");
@@ -113,7 +110,7 @@ public class MainView extends View {
 
             },
             new String [] {
-                "Dados"
+                "Dados no Layout"
             }
         ));
         tblLayouts.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -136,6 +133,12 @@ public class MainView extends View {
             }
         });
 
+        txtLinhaSelecionada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtLinhaSelecionadaMouseClicked(evt);
+            }
+        });
+
         jLabel4.setText("Tamanho da Linha:");
 
         lbltamanhoLinha.setText("0");
@@ -144,9 +147,7 @@ public class MainView extends View {
 
         lblTotalLinhas.setText("0");
 
-        jLabel6.setText("Analise:");
-
-        lblResultado.setText("(Resultado)");
+        jLabel6.setText("Resultado:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Layarq ");
@@ -161,7 +162,7 @@ public class MainView extends View {
                 {null}
             },
             new String [] {
-                "Linhas"
+                "Linhas do Arquivo"
             }
         ));
         jScrollPane2.setViewportView(tblLinhas);
@@ -195,7 +196,7 @@ public class MainView extends View {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblResultado, javax.swing.GroupLayout.DEFAULT_SIZE, 4, Short.MAX_VALUE)
                         .addGap(215, 215, 215)
                         .addComponent(btnAnalisar))
                     .addGroup(layout.createSequentialGroup()
@@ -264,6 +265,7 @@ public class MainView extends View {
             { 
                 tblLinhas.setModel(controller.getLinhaTableModel());
                 lblTotalLinhas.setText(controller.getQuantidadeLinhas()+"");
+                tblLinhas.doLayout();
             }
             
         } catch (IllegalArgumentException e) {}
@@ -288,6 +290,12 @@ public class MainView extends View {
             lblResultado.setText("Aparentemente sem erros...");
         }
     }//GEN-LAST:event_btnAnalisarActionPerformed
+
+    private void txtLinhaSelecionadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLinhaSelecionadaMouseClicked
+         int posicao = txtLinhaSelecionada.getCaretPosition();
+         int linhaPosicao = controller.getLinhaDePosicao(posicao);
+         tblLayouts.setRowSelectionInterval(linhaPosicao, linhaPosicao);
+    }//GEN-LAST:event_txtLinhaSelecionadaMouseClicked
    
     public void setJTable()
     {

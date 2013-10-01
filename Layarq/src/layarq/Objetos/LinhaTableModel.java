@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
  * @author cristianoliveira
  */
 public class LinhaTableModel extends AbstractTableModel{
-    private String[] colunas = {"Linha"};
+    private String[] colunas = {"Linhas do Arquivo"};
     private ArrayList<String> dados = new ArrayList<String>();
     boolean hasTipoEsperado;
     int erros = 0;

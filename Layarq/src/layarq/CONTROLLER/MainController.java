@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package layarq.CONTROLLER;
-import java.awt.Component;
 import java.util.ArrayList;
 import layarq.MODEL.FileModel;
 import layarq.Objetos.Layout;
@@ -59,7 +58,10 @@ public class MainController extends Controller {
      
      public String getLinhaSelecionada()
      {
-         return hasLinhas()? linhas.get(linhaSelecionada) : "";
+         if(linhaSelecionada>=0)
+          return hasLinhas()? linhas.get(linhaSelecionada) : "";
+         else
+          return "";
      }
      
      public boolean hasLinhas()
@@ -75,5 +77,22 @@ public class MainController extends Controller {
      public LinhaTableModel getLinhaTableModel()
      {
          return model.getLinhaTableModel(linhas);
+     }
+     
+     public int getLinhaDePosicao(int pPosicao)
+     {
+         try {
+          for (int i = 0; i < layouts.size(); i++) {
+             try {
+                Layout lin = layouts.get(i);
+                 System.err.println(lin.posicaoInicial+" <= "+pPosicao+" & "+pPosicao+" <= "+lin.posicaoFinal);
+                if(lin.posicaoInicial <= pPosicao & pPosicao <= lin.posicaoFinal)
+                    return i;
+             } catch (Exception e) {
+             } 
+         }   
+         } catch (NullPointerException e) {
+         }
+         return 0;
      }
 }
